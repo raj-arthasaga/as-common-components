@@ -1,0 +1,8 @@
+.mr-2 {
+  margin-right: 10px;
+}
+
+#react-select-3-listbox {
+  position: relative;
+  z-index: 9999;
+}

@@ -1,0 +1,3 @@
+export const GET_SIGN = 'GET_SIGN';
+export const GET_SIGN_SUCCESS = 'GET_SIGN_SUCCESS';
+export const GET_SIGN_FAILUIRE = 'GET_SIGN_FAILUIRE';
