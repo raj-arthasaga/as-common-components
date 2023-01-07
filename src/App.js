@@ -1,8 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStyle from './styles/Global.style';
 
 function App() {
-  return <div className='App'>Hi This is app</div>;
+  return (
+    <>
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;
