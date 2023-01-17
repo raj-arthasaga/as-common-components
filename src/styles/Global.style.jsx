@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
   }
+  html, body , #root {
+    height: 100%;
+}
 `;
 
 export default GlobalStyle;
