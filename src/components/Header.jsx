@@ -101,7 +101,9 @@ function Header() {
                 },
               }}
             >
-              <Button variant='text'>Sign Up</Button>
+              <Link to='/sign-up'>
+                <Button variant='text'>Sign Up</Button>
+              </Link>
             </Box>
           </Box>
         </Toolbar>
