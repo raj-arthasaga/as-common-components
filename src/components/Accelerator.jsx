@@ -55,7 +55,7 @@ const validationSchema = yup.object({
     ),
 });
 
-const SignUp = () => {
+const Accelerator = () => {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -94,7 +94,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'StartUp Name'}
+                  label={'Name of the Firm'}
                   value={formik.values.StartUp}
                   onChange={formik.handleChange}
                   error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
@@ -105,51 +105,10 @@ const SignUp = () => {
               </Box>
               <Box
                 sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Legal Name'}
-                  value={formik.values.legal}
-                  onChange={formik.handleChange}
-                  error={formik.touched.legal && Boolean(formik.errors.legal)}
-                  helperText={formik.touched.legal && formik.errors.legal}
-                  name='legal'
-                  id='legal'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Founder Name'}
-                  value={formik.values.founderName}
-                  onChange={formik.handleChange}
-                  error={formik.touched.founderName && Boolean(formik.errors.founderName)}
-                  helperText={formik.touched.founderName && formik.errors.founderName}
-                  id='founderName'
-                  name='founderName'
-                />
-              </Box>
-              <Box
-                sx={{
                   mt: 2,
                   display: 'flex',
                   justifyContent: 'center',
+                  mb: 5,
 
                   '& .MuiInputBase-root': {
                     border: '1px solid #3D4659 !important',
@@ -191,7 +150,125 @@ const SignUp = () => {
                     IconComponent={() => <DownChervon />}
                   >
                     <MenuItem value=''>
-                      <em>Designation</em>
+                      <em>Nature of the Accelerator Entity</em>
+                    </MenuItem>
+                    <MenuItem
+                      value={10}
+                      sx={{
+                        fontFamily: "'Poppins',sans-serif !important",
+                      }}
+                    >
+                      Start Up
+                    </MenuItem>
+                    <MenuItem
+                      value={20}
+                      sx={{
+                        fontFamily: "'Poppins',sans-serif !important",
+                      }}
+                    >
+                      Twenty
+                    </MenuItem>
+                    <MenuItem
+                      value={30}
+                      sx={{
+                        fontFamily: "'Poppins',sans-serif !important",
+                      }}
+                    >
+                      Thirty
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'CIN No.'}
+                  value={formik.values.legal}
+                  onChange={formik.handleChange}
+                  error={formik.touched.legal && Boolean(formik.errors.legal)}
+                  helperText={formik.touched.legal && formik.errors.legal}
+                  name='legal'
+                  id='legal'
+                />
+              </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Your Registered Address'}
+                  value={formik.values.legal}
+                  onChange={formik.handleChange}
+                  error={formik.touched.legal && Boolean(formik.errors.legal)}
+                  helperText={formik.touched.legal && formik.errors.legal}
+                  name='legal'
+                  id='legal'
+                />
+              </Box>
+              <Box
+                sx={{
+                  mt: 2,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  mb: 5,
+
+                  '& .MuiInputBase-root': {
+                    border: '1px solid #3D4659 !important',
+                    borderRadius: '10px',
+                  },
+                  '& .MuiSelect-select': {
+                    fontFamily: "'Poppins',sans-serif !important",
+                    fontWeight: 400,
+                    fontSize: 16,
+                    display: 'flex',
+                    alignItems: 'center',
+                  },
+                  '& .MuiInputBase-formControl': {
+                    '&:hover': {
+                      border: 0,
+                    },
+                    '& .MuiOutlinedInput-input': {
+                      paddingRight: 0,
+                      mr: '25px',
+                      pl: '25px',
+                      pr: 0,
+                    },
+                    '& svg': {
+                      mr: '43px',
+                    },
+                  },
+                  '& fieldset': {
+                    borderColor: 'transparent !important',
+                    borderWidth: '0 !important',
+                  },
+                }}
+              >
+                <FormControl fullWidth>
+                  <Select
+                    value={age}
+                    onChange={handleChange}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    IconComponent={() => <DownChervon />}
+                  >
+                    <MenuItem value=''>
+                      <em>How you want to help Startups</em>
                     </MenuItem>
                     <MenuItem
                       value={10}
@@ -234,7 +311,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'E-mail'}
+                  label={'POC Name'}
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   error={formik.touched.email && Boolean(formik.errors.email)}
@@ -255,7 +332,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Phone Number'}
+                  label={'POC Phone No.'}
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
                   error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
@@ -276,13 +353,13 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Adhar Number'}
-                  value={formik.values.aadhar}
+                  label={'POC Email Address'}
+                  value={formik.values.email}
                   onChange={formik.handleChange}
-                  error={formik.touched.aadhar && Boolean(formik.errors.aadhar)}
-                  helperText={formik.touched.aadhar && formik.errors.aadhar}
-                  name='aadhar'
-                  id='aadhar'
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='email'
                 />
               </Box>
               <Box
@@ -297,7 +374,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'CIN'}
+                  label={'References of 2 clients / Start-ups'}
                   value={formik.values.Cin}
                   onChange={formik.handleChange}
                   error={formik.touched.Cin && Boolean(formik.errors.Cin)}
@@ -338,4 +415,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Accelerator;

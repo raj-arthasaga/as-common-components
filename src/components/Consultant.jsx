@@ -55,7 +55,7 @@ const validationSchema = yup.object({
     ),
 });
 
-const SignUp = () => {
+const Consultant = () => {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -84,72 +84,9 @@ const SignUp = () => {
             <Grid item xs={6}>
               <Box
                 sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'StartUp Name'}
-                  value={formik.values.StartUp}
-                  onChange={formik.handleChange}
-                  error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
-                  helperText={formik.touched.StartUp && formik.errors.StartUp}
-                  name='StartUp'
-                  id='StartUp'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Legal Name'}
-                  value={formik.values.legal}
-                  onChange={formik.handleChange}
-                  error={formik.touched.legal && Boolean(formik.errors.legal)}
-                  helperText={formik.touched.legal && formik.errors.legal}
-                  name='legal'
-                  id='legal'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Founder Name'}
-                  value={formik.values.founderName}
-                  onChange={formik.handleChange}
-                  error={formik.touched.founderName && Boolean(formik.errors.founderName)}
-                  helperText={formik.touched.founderName && formik.errors.founderName}
-                  id='founderName'
-                  name='founderName'
-                />
-              </Box>
-              <Box
-                sx={{
-                  mt: 2,
                   display: 'flex',
                   justifyContent: 'center',
+                  mb: 5,
 
                   '& .MuiInputBase-root': {
                     border: '1px solid #3D4659 !important',
@@ -191,7 +128,7 @@ const SignUp = () => {
                     IconComponent={() => <DownChervon />}
                   >
                     <MenuItem value=''>
-                      <em>Designation</em>
+                      <em>Service Type</em>
                     </MenuItem>
                     <MenuItem
                       value={10}
@@ -220,6 +157,69 @@ const SignUp = () => {
                   </Select>
                 </FormControl>
               </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Name of Consultant'}
+                  value={formik.values.StartUp}
+                  onChange={formik.handleChange}
+                  error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
+                  helperText={formik.touched.StartUp && formik.errors.StartUp}
+                  name='StartUp'
+                  id='StartUp'
+                />
+              </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Registered Address'}
+                  value={formik.values.legal}
+                  onChange={formik.handleChange}
+                  error={formik.touched.legal && Boolean(formik.errors.legal)}
+                  helperText={formik.touched.legal && formik.errors.legal}
+                  name='legal'
+                  id='legal'
+                />
+              </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Website / Social Media Handel Address'}
+                  value={formik.values.founderName}
+                  onChange={formik.handleChange}
+                  error={formik.touched.founderName && Boolean(formik.errors.founderName)}
+                  helperText={formik.touched.founderName && formik.errors.founderName}
+                  id='founderName'
+                  name='founderName'
+                />
+              </Box>
             </Grid>
             <Grid item xs={6}>
               <Box
@@ -234,49 +234,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'E-mail'}
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                  name='email'
-                  id='E-mail'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Phone Number'}
-                  value={formik.values.phoneNumber}
-                  onChange={formik.handleChange}
-                  error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                  helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                  name='phoneNumber'
-                  id='phoneNumber'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Adhar Number'}
+                  label={'POC Details'}
                   value={formik.values.aadhar}
                   onChange={formik.handleChange}
                   error={formik.touched.aadhar && Boolean(formik.errors.aadhar)}
@@ -297,13 +255,56 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'CIN'}
+                  label={'Name of Relevant Person'}
                   value={formik.values.Cin}
                   onChange={formik.handleChange}
                   error={formik.touched.Cin && Boolean(formik.errors.Cin)}
                   helperText={formik.touched.Cin && formik.errors.Cin}
                   name='Cin'
                   id='Cin'
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Your Phone No.'}
+                  value={formik.values.phoneNumber}
+                  onChange={formik.handleChange}
+                  error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                  helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                  name='phoneNumber'
+                  id='phoneNumber'
+                />
+              </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Your Email Address'}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='E-mail'
                 />
               </Box>
             </Grid>
@@ -338,4 +339,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Consultant;

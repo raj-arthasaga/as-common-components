@@ -1,75 +1,74 @@
 import React from 'react';
-import { useFormik } from 'formik';
 import {
-  Grid,
-  Box,
-  Container,
-  Typography,
-  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   FormControl,
+  Grid,
   Select,
   MenuItem,
-  TextField,
+  Button,
 } from '@mui/material';
-import Input from '../components/Input';
+import { Box } from '@mui/system';
+import { useState } from 'react';
 import { ReactComponent as DownChervon } from '../assets/sign-up/down-chervon.svg';
-
+import { useFormik } from 'formik';
+import 'yup-phone';
+import * as yup from 'yup';
 import 'yup-phone';
 
-import * as yup from 'yup';
+import Input from './Input';
 
-const validationSchema = yup.object({
-  StartUp: yup
-    .string('Enter your StartUp Name')
-    .required('StartUp Name is required(free form upto 50 char)')
-    .max(50, 'free form upto 50 char'),
-  legal: yup
-    .string('Legal Name is required')
-    .required('legal Name is required(free form upto 100 char)')
-    .max(100, 'free form upto 100 char'),
-  founderName: yup.string('Enter your Founder Name').required('Founder Name is required'),
-  email: yup
-    .string('Enter your email')
-    .email(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .) '
-    )
-    .required(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    )
-    .max(
-      50,
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    ),
-  phoneNumber: yup.string().phone('IN', true).required('Enter Valid Number').max(10, ''),
-  aadhar: yup
-    .string('Enter your aadhar number')
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      'aadhar number is not valid'
-    ),
-  Cin: yup
-    .string('Enter CIN number')
-    .matches(
-      /^([LUu]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$/,
-      'CIN Number is not valid'
-    ),
-});
+import Institutional from './Institutional';
 
-const SignUp = () => {
+const Individual = () => {
+  const [radioDual, setRadioDual] = useState(false);
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const validationSchema = yup.object({
+    name: yup.string('Enter Your Name').required('Enter Your Name').max(50, 'free form upto 50 char'),
+    residence: yup
+      .string('Enter Your Residence')
+      .required('Enter Your Residence')
+      .max(50, 'free form upto 50 char'),
+    dob: yup
+      .date()
+      .max(new Date(Date.now() - 567648000000), 'You must be at least 18 years')
+      .required('Required'),
+    email: yup
+      .string('Enter your email')
+      .email(
+        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .) '
+      )
+      .required(
+        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
+      )
+      .max(
+        50,
+        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
+      ),
+    phoneNumber: yup.string().phone('IN', true).required('Enter Valid Number').max(10, ''),
+
+    aadhar: yup
+      .string('Enter your aadhar number')
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        'aadhar number is not valid'
+      ),
+  });
+
   const formik = useFormik({
     initialValues: {
-      StartUp: '',
-      legal: '',
+      name: '',
+      dob: '',
       email: '',
-      founderName: '',
       phoneNumber: '',
+      residence: '',
       aadhar: '',
-      Cin: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -77,7 +76,7 @@ const SignUp = () => {
     },
   });
   return (
-    <Box sx={{ pt: '25px' }}>
+    <Box>
       <form onSubmit={formik.handleSubmit}>
         <Box sx={{ mt: 10 }}>
           <Grid container spacing={20}>
@@ -94,13 +93,13 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'StartUp Name'}
-                  value={formik.values.StartUp}
+                  label={'Name of the Organization'}
+                  value={formik.values.name}
                   onChange={formik.handleChange}
-                  error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
-                  helperText={formik.touched.StartUp && formik.errors.StartUp}
-                  name='StartUp'
-                  id='StartUp'
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                  name='name'
+                  id='name'
                 />
               </Box>
               <Box
@@ -115,34 +114,13 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Legal Name'}
-                  value={formik.values.legal}
+                  label={'Type of Organization'}
+                  value={formik.values.dob}
                   onChange={formik.handleChange}
-                  error={formik.touched.legal && Boolean(formik.errors.legal)}
-                  helperText={formik.touched.legal && formik.errors.legal}
-                  name='legal'
-                  id='legal'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Founder Name'}
-                  value={formik.values.founderName}
-                  onChange={formik.handleChange}
-                  error={formik.touched.founderName && Boolean(formik.errors.founderName)}
-                  helperText={formik.touched.founderName && formik.errors.founderName}
-                  id='founderName'
-                  name='founderName'
+                  error={formik.touched.dob && Boolean(formik.errors.dob)}
+                  helperText={formik.touched.dob && formik.errors.dob}
+                  name='dob'
+                  id='dob'
                 />
               </Box>
               <Box
@@ -150,6 +128,7 @@ const SignUp = () => {
                   mt: 2,
                   display: 'flex',
                   justifyContent: 'center',
+                  mb: 5,
 
                   '& .MuiInputBase-root': {
                     border: '1px solid #3D4659 !important',
@@ -191,7 +170,7 @@ const SignUp = () => {
                     IconComponent={() => <DownChervon />}
                   >
                     <MenuItem value=''>
-                      <em>Designation</em>
+                      <em>Nature of Organization</em>
                     </MenuItem>
                     <MenuItem
                       value={10}
@@ -220,6 +199,27 @@ const SignUp = () => {
                   </Select>
                 </FormControl>
               </Box>
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Company CIN, LLP IN,'}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='email'
+                />
+              </Box>
             </Grid>
             <Grid item xs={6}>
               <Box
@@ -234,13 +234,13 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'E-mail'}
-                  value={formik.values.email}
+                  label={'Name of Director / Partner'}
+                  value={formik.values.residence}
                   onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                  name='email'
-                  id='E-mail'
+                  error={formik.touched.residence && Boolean(formik.errors.residence)}
+                  helperText={formik.touched.residence && formik.errors.residence}
+                  name='residence'
+                  id='residence'
                 />
               </Box>
               <Box
@@ -255,7 +255,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Phone Number'}
+                  label={'Your Phone No.'}
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
                   error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
@@ -264,6 +264,7 @@ const SignUp = () => {
                   id='phoneNumber'
                 />
               </Box>
+
               <Box
                 sx={{
                   '& .MuiTextField-root': {
@@ -276,34 +277,13 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Adhar Number'}
-                  value={formik.values.aadhar}
+                  label={'Your E-mail Address'}
+                  value={formik.values.email}
                   onChange={formik.handleChange}
-                  error={formik.touched.aadhar && Boolean(formik.errors.aadhar)}
-                  helperText={formik.touched.aadhar && formik.errors.aadhar}
-                  name='aadhar'
-                  id='aadhar'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'CIN'}
-                  value={formik.values.Cin}
-                  onChange={formik.handleChange}
-                  error={formik.touched.Cin && Boolean(formik.errors.Cin)}
-                  helperText={formik.touched.Cin && formik.errors.Cin}
-                  name='Cin'
-                  id='Cin'
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='email'
                 />
               </Box>
             </Grid>
@@ -338,4 +318,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Individual;

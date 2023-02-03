@@ -55,7 +55,7 @@ const validationSchema = yup.object({
     ),
 });
 
-const SignUp = () => {
+const AngelNetwork = () => {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -94,7 +94,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'StartUp Name'}
+                  label={'Your Name'}
                   value={formik.values.StartUp}
                   onChange={formik.handleChange}
                   error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
@@ -115,7 +115,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Legal Name'}
+                  label={'Founder Name'}
                   value={formik.values.legal}
                   onChange={formik.handleChange}
                   error={formik.touched.legal && Boolean(formik.errors.legal)}
@@ -136,7 +136,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Founder Name'}
+                  label={'Founder Date of Birth'}
                   value={formik.values.founderName}
                   onChange={formik.handleChange}
                   error={formik.touched.founderName && Boolean(formik.errors.founderName)}
@@ -147,78 +147,24 @@ const SignUp = () => {
               </Box>
               <Box
                 sx={{
-                  mt: 2,
-                  display: 'flex',
-                  justifyContent: 'center',
-
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
                   '& .MuiInputBase-root': {
-                    border: '1px solid #3D4659 !important',
-                    borderRadius: '10px',
-                  },
-                  '& .MuiSelect-select': {
-                    fontFamily: "'Poppins',sans-serif !important",
-                    fontWeight: 400,
-                    fontSize: 16,
-                    display: 'flex',
-                    alignItems: 'center',
-                  },
-                  '& .MuiInputBase-formControl': {
-                    '&:hover': {
-                      border: 0,
-                    },
-                    '& .MuiOutlinedInput-input': {
-                      paddingRight: 0,
-                      mr: '25px',
-                      pl: '25px',
-                      pr: 0,
-                    },
-                    '& svg': {
-                      mr: '43px',
-                    },
-                  },
-                  '& fieldset': {
-                    borderColor: 'transparent !important',
-                    borderWidth: '0 !important',
+                    width: '100%',
                   },
                 }}
               >
-                <FormControl fullWidth>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                    IconComponent={() => <DownChervon />}
-                  >
-                    <MenuItem value=''>
-                      <em>Designation</em>
-                    </MenuItem>
-                    <MenuItem
-                      value={10}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Start Up
-                    </MenuItem>
-                    <MenuItem
-                      value={20}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Twenty
-                    </MenuItem>
-                    <MenuItem
-                      value={30}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Thirty
-                    </MenuItem>
-                  </Select>
-                </FormControl>
+                <Input
+                  label={'Founder Adhaar No.'}
+                  value={formik.values.founderName}
+                  onChange={formik.handleChange}
+                  error={formik.touched.founderName && Boolean(formik.errors.founderName)}
+                  helperText={formik.touched.founderName && formik.errors.founderName}
+                  id='founderName'
+                  name='founderName'
+                />
               </Box>
             </Grid>
             <Grid item xs={6}>
@@ -234,49 +180,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'E-mail'}
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                  name='email'
-                  id='E-mail'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Phone Number'}
-                  value={formik.values.phoneNumber}
-                  onChange={formik.handleChange}
-                  error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                  helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                  name='phoneNumber'
-                  id='phoneNumber'
-                />
-              </Box>
-              <Box
-                sx={{
-                  '& .MuiTextField-root': {
-                    width: '100%',
-                  },
-                  mb: 5,
-                  '& .MuiInputBase-root': {
-                    width: '100%',
-                  },
-                }}
-              >
-                <Input
-                  label={'Adhar Number'}
+                  label={'POC Details'}
                   value={formik.values.aadhar}
                   onChange={formik.handleChange}
                   error={formik.touched.aadhar && Boolean(formik.errors.aadhar)}
@@ -297,13 +201,57 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'CIN'}
+                  label={'Name of Relevant Person'}
                   value={formik.values.Cin}
                   onChange={formik.handleChange}
                   error={formik.touched.Cin && Boolean(formik.errors.Cin)}
                   helperText={formik.touched.Cin && formik.errors.Cin}
                   name='Cin'
                   id='Cin'
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'Your Email Address'}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='E-mail'
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  '& .MuiTextField-root': {
+                    width: '100%',
+                  },
+                  mb: 5,
+                  '& .MuiInputBase-root': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <Input
+                  label={'POC Address'}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  name='email'
+                  id='E-mail'
                 />
               </Box>
             </Grid>
@@ -338,4 +286,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default AngelNetwork;
