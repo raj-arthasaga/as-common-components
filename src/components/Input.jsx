@@ -1,27 +1,32 @@
 import React from 'react';
-import { InputWrapper } from '../styles/Input.style';
 import TextField from '@mui/material/TextField';
-import { Box, OutlinedInput } from '@mui/material';
+import { Box } from '@mui/material';
 
-const Input = ({ label, onChange, value, error, helperText, name, id, TextFieldInp, OutLineInput }) => {
+const Input = ({
+  label,
+  onChange,
+  value,
+  error,
+  helperText,
+  name,
+  id,
+  onInput,
+  InputProps,
+  onKeyDown,
+  type,
+}) => {
   return (
     <>
       <Box
         sx={{
-          '& fieldset': {
-            border: '1px solid #3D4659!important',
-            borderRadius: '10px',
-            '&:hover': {
-              borderColor: 'transparent !important',
-            },
-          },
           '& .MuiSelect-select': {
             color: '#3e495a',
           },
         }}
       >
         <TextField
-          // label={label}
+          fullWidth
+          label={label}
           placeholder={label}
           value={value}
           onChange={onChange}
@@ -30,23 +35,17 @@ const Input = ({ label, onChange, value, error, helperText, name, id, TextFieldI
           helperText={helperText}
           name={name}
           id={id}
+          inputProps={InputProps}
+          onInput={onInput}
+          InputProps={InputProps}
+          onKeyDown={onKeyDown}
           sx={{
-            '& legend': {
-              display: 'none',
-            },
-            '& label': {
-              top: '-5px',
-              fontFamily: "'Poppins',sans-serif !important",
-              color: '#3e495a',
-              borderColor: '#000',
-              borderWidth: '1.5px',
-              fontWeight: '600',
-            },
             '& input': {
               fontFamily: "'Poppins',sans-serif !important",
               color: '#3e495a',
             },
           }}
+          type={type}
         />
       </Box>
     </>

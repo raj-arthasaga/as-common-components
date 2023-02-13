@@ -1,25 +1,12 @@
 import React from 'react';
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  FormControl,
-  Grid,
-  Select,
-  MenuItem,
-  Button,
-} from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { useState } from 'react';
-import { ReactComponent as DownChervon } from '../assets/sign-up/down-chervon.svg';
 import { useFormik } from 'formik';
 import 'yup-phone';
 import * as yup from 'yup';
-import 'yup-phone';
-
 import Input from './Input';
-
-import Institutional from './Institutional';
+import { String } from './string';
 
 const Individual = () => {
   const [radioDual, setRadioDual] = useState(false);
@@ -30,34 +17,19 @@ const Individual = () => {
   };
 
   const validationSchema = yup.object({
-    name: yup.string('Enter Your Name').required('Enter Your Name').max(50, 'free form upto 50 char'),
-    residence: yup
-      .string('Enter Your Residence')
-      .required('Enter Your Residence')
-      .max(50, 'free form upto 50 char'),
+    name: yup.string(String.NAME).required(String.NAME).max(50, String.MAX_50),
+    residence: yup.string(String.ENTER_RESIDENCE).required(String.ENTER_RESIDENCE).max(50, String.MAX_50),
     dob: yup
       .date()
       .max(new Date(Date.now() - 567648000000), 'You must be at least 18 years')
       .required('Required'),
     email: yup
-      .string('Enter your email')
-      .email(
-        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .) '
-      )
-      .required(
-        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-      )
-      .max(
-        50,
-        'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-      ),
+      .string(String.EMAIL_UP)
+      .email(String.VALID_EMAIL)
+      .required(String.VALID_EMAIL)
+      .max(50, String.MAX_50),
     phoneNumber: yup.string().phone('IN', true).required('Enter Valid Number').max(10, ''),
-    aadhar: yup
-      .string('Enter your aadhar number')
-      .matches(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        'aadhar number is not valid'
-      ),
+    aadhar: yup.string(String.AADHAR_NUM).matches(String.AADHAR_NUM_VALID, String.AADHAR_NUM_VALID_IS),
   });
 
   const formik = useFormik({

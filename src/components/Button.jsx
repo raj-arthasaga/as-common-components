@@ -1,13 +1,12 @@
 import React from 'react';
-import { ButtonWrapper } from '../styles/Button.style';
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 
-const ButtonComponent = ({ children }) => {
+const ButtonMain = ({ children, sx, type, variant }) => {
   return (
-    <ButtonWrapper>
-      <Button>{children}</Button>
-    </ButtonWrapper>
+    <Button type={type} sx={sx} variant={variant}>
+      {children}
+    </Button>
   );
 };
 
-export default ButtonComponent;
+export default ButtonMain;

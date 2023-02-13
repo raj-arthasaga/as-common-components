@@ -1,65 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import {
-  Grid,
-  Box,
-  Container,
-  Typography,
-  Button,
-  FormControl,
-  Select,
-  MenuItem,
-  TextField,
-} from '@mui/material';
+import { Grid, Box, Button, FormControl, InputAdornment } from '@mui/material';
 import Input from '../components/Input';
-import { ReactComponent as DownChervon } from '../assets/sign-up/down-chervon.svg';
-
 import 'yup-phone';
-
 import * as yup from 'yup';
+import { String } from './string';
+import { DesignationData } from '../services/data';
+import ControlledSelect from './Select';
+import ButtonMain from './Button';
 
 const validationSchema = yup.object({
-  StartUp: yup
-    .string('Enter your StartUp Name')
-    .required('StartUp Name is required(free form upto 50 char)')
-    .max(50, 'free form upto 50 char'),
-  legal: yup
-    .string('Legal Name is required')
-    .required('legal Name is required(free form upto 100 char)')
-    .max(100, 'free form upto 100 char'),
-  founderName: yup.string('Enter your Founder Name').required('Founder Name is required'),
+  StartUp: yup.string(String.ENTER_YOUR_START_UP).required(String.START_UP_MAX).max(50, String.MAX_50),
+  legal: yup.string(String.LEGAL_NAME).required(String.LEGAL_NAME_MAX).max(100, String.MAX_100),
+  founderName: yup.string(String.FOUNDER_NAME).required(String.NAME_REQ),
   email: yup
-    .string('Enter your email')
-    .email(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .) '
-    )
-    .required(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    )
-    .max(
-      50,
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    ),
-  phoneNumber: yup.string().phone('IN', true).required('Enter Valid Number').max(10, ''),
-  aadhar: yup
-    .string('Enter your aadhar number')
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      'aadhar number is not valid'
-    ),
-  Cin: yup
-    .string('Enter CIN number')
-    .matches(
-      /^([LUu]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$/,
-      'CIN Number is not valid'
-    ),
+    .string(String.EMAIL_UP)
+    .email(String.VALID_EMAIL)
+    .required(String.VALID_EMAIL)
+    .max(50, String.VALID_EMAIL),
+  phoneNumber: yup
+    .string('Please enter a valid phone number')
+    .phone('IN', 'Please enter a valid phone number')
+    .required('A phone number is required')
+    .max(10, ''),
+  aadhar: yup.string(String.AADHAR_NUM).matches(String.AADHAR_NUM_VALID, String.AADHAR_NUM_VALID_IS),
+  Cin: yup.string(String.CIN_NUM).matches(String.CIN_NUM_VALID, 'CIN Number is not valid'),
 });
 
 const SignUp = () => {
-  const [age, setAge] = React.useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const [value, setValue] = useState(10);
+  const options = DesignationData;
+  const handleChange = (value) => {
+    console.log(`value: ${value}`);
+    setValue(value);
   };
   const formik = useFormik({
     initialValues: {
@@ -76,6 +49,7 @@ const SignUp = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
   return (
     <Box sx={{ pt: '25px' }}>
       <form onSubmit={formik.handleSubmit}>
@@ -94,7 +68,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'StartUp Name'}
+                  label={'Startup name'}
                   value={formik.values.StartUp}
                   onChange={formik.handleChange}
                   error={formik.touched.StartUp && Boolean(formik.errors.StartUp)}
@@ -115,7 +89,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Legal Name'}
+                  label={'Legal name'}
                   value={formik.values.legal}
                   onChange={formik.handleChange}
                   error={formik.touched.legal && Boolean(formik.errors.legal)}
@@ -136,7 +110,7 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Founder Name'}
+                  label={'Founder name'}
                   value={formik.values.founderName}
                   onChange={formik.handleChange}
                   error={formik.touched.founderName && Boolean(formik.errors.founderName)}
@@ -183,41 +157,7 @@ const SignUp = () => {
                 }}
               >
                 <FormControl fullWidth>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                    IconComponent={() => <DownChervon />}
-                  >
-                    <MenuItem value=''>
-                      <em>Designation</em>
-                    </MenuItem>
-                    <MenuItem
-                      value={10}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Start Up
-                    </MenuItem>
-                    <MenuItem
-                      value={20}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Twenty
-                    </MenuItem>
-                    <MenuItem
-                      value={30}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Thirty
-                    </MenuItem>
-                  </Select>
+                  <ControlledSelect value={value} options={options} onChange={handleChange} />
                 </FormControl>
               </Box>
             </Grid>
@@ -255,13 +195,18 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Phone Number'}
+                  label={'Phone number'}
                   value={formik.values.phoneNumber}
                   onChange={formik.handleChange}
                   error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                   helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
                   name='phoneNumber'
                   id='phoneNumber'
+                  InputProps={{
+                    startAdornment: <InputAdornment position='start'>+91</InputAdornment>,
+                    maxLength: 10,
+                  }}
+                  type='text'
                 />
               </Box>
               <Box
@@ -276,13 +221,24 @@ const SignUp = () => {
                 }}
               >
                 <Input
-                  label={'Adhar Number'}
+                  label={'Adhar number'}
                   value={formik.values.aadhar}
                   onChange={formik.handleChange}
                   error={formik.touched.aadhar && Boolean(formik.errors.aadhar)}
                   helperText={formik.touched.aadhar && formik.errors.aadhar}
                   name='aadhar'
                   id='aadhar'
+                  onKeyDown={function () {
+                    if (value.length > 0) {
+                      if (value.length % 4 === 0) {
+                        value += '    ';
+                      }
+                    }
+                  }}
+                  InputProps={{
+                    maxLength: 14,
+                  }}
+                  // type='text'
                 />
               </Box>
               <Box
@@ -304,6 +260,10 @@ const SignUp = () => {
                   helperText={formik.touched.Cin && formik.errors.Cin}
                   name='Cin'
                   id='Cin'
+                  InputProps={{
+                    maxLength: 21,
+                  }}
+                  // type='text'
                 />
               </Box>
             </Grid>
@@ -314,8 +274,14 @@ const SignUp = () => {
             sx={{
               textAlign: 'center',
               mt: '60px',
-
-              '& button': {
+            }}
+          >
+            {/* <Button variant='text' type='submit'>
+              Sign UP
+            </Button> */}
+            <ButtonMain
+              type={'submit'}
+              sx={{
                 backgroundColor: '#5fbd6f',
                 color: '#fff',
                 padding: '.5rem 5rem',
@@ -325,12 +291,10 @@ const SignUp = () => {
                 '&:hover': {
                   backgroundColor: '#5fbd6f',
                 },
-              },
-            }}
-          >
-            <Button variant='text' type='submit'>
+              }}
+            >
               Sign UP
-            </Button>
+            </ButtonMain>
           </Box>
         </Box>
       </form>

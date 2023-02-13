@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
-import {
-  Grid,
-  Box,
-  Container,
-  Typography,
-  Button,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-} from '@mui/material';
+import { Grid, Box, Container, Typography, FormControl } from '@mui/material';
 import SignUpLogo from '../assets/sign-up/logo.png';
 import SignUpVector from '../assets/sign-up/sign-up.png';
 import SignUpForm from '../components/SignUp';
-import { ReactComponent as DownChervon } from '../assets/sign-up/down-chervon.svg';
 import InvestorComponent from '../components/InvestorComponent';
 import Consultant from '../components/Consultant';
 import AngelNetwork from '../components/AngelNetwork';
 import InvBank from '../components/InvBank';
 import Accelerator from '../components/Accelerator';
+import ControlledSelect from '../components/Select';
+import { SignUpData } from '../services/data';
+import { String } from '../components/string';
 
 const SignUp = () => {
-  const [age, setAge] = React.useState(10);
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const [value, setValue] = useState(10);
+  const options = SignUpData;
+  const handleChange = (value) => {
+    console.log(`value: ${value}`);
+    setValue(value);
   };
-
-  console.log(age, 'age');
 
   return (
     <>
@@ -74,7 +65,7 @@ const SignUp = () => {
                       color: '#40465d',
                     }}
                   >
-                    Welcome to Arthasaga
+                    {String.WELCOME}
                   </Typography>
                 </Box>
                 <Box>
@@ -86,7 +77,7 @@ const SignUp = () => {
                       mt: 2,
                     }}
                   >
-                    We're excited to have you on board, Let's get started by creating your account
+                    {String.SIGN_UP_TXT}
                   </Typography>
                 </Box>
               </Box>
@@ -98,7 +89,7 @@ const SignUp = () => {
 
                   '& .MuiInputBase-root': {
                     border: '1px solid #3D4659 !important',
-                    borderRadius: '10px',
+                    borderRadius: '5px',
                   },
                   '& .MuiSelect-select': {
                     fontFamily: "'Poppins',sans-serif !important",
@@ -128,72 +119,29 @@ const SignUp = () => {
                 }}
               >
                 <FormControl fullWidth sx={{ maxWidth: 549 }}>
-                  <Select
-                    value={age}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'Without label' }}
-                    IconComponent={() => <DownChervon />}
-                    defaultValue={'10'}
-                  >
-                    <MenuItem
-                      value={10}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Start Up
-                    </MenuItem>
-                    <MenuItem
-                      value={20}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Investor
-                    </MenuItem>
-                    <MenuItem
-                      value={30}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Consultant
-                    </MenuItem>
-                    <MenuItem
-                      value={40}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Angel Network
-                    </MenuItem>
-                    <MenuItem
-                      value={50}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Inv. Bank
-                    </MenuItem>
-                    <MenuItem
-                      value={60}
-                      sx={{
-                        fontFamily: "'Poppins',sans-serif !important",
-                      }}
-                    >
-                      Accelerator / Incubator
-                    </MenuItem>
-                  </Select>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ mr: 1 }}>
+                      <Typography
+                        variant='h5'
+                        sx={{ fontFamily: "'Poppins',sans-serif !important", fontWeight: '600' }}
+                      >
+                        {String.I_AM}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <ControlledSelect value={value} options={options} onChange={handleChange} />
+                    </Box>
+                  </Box>
                 </FormControl>
               </Box>
-              <Box>{age === 10 ? <SignUpForm /> : null}</Box>
-              <Box>{age === 20 ? <InvestorComponent /> : null}</Box>
-              <Box>{age === 30 ? <Consultant /> : null}</Box>
-              <Box>{age === 40 ? <AngelNetwork /> : null}</Box>
-              <Box>{age === 50 ? <InvBank /> : null}</Box>
-              <Box>{age === 60 ? <Accelerator /> : null}</Box>
+              <Box>{value === 10 ? <SignUpForm /> : null}</Box>
+              <Box>{value === 20 ? <InvestorComponent /> : null}</Box>
+              <Box>{value === 30 ? <Consultant /> : null}</Box>
+              <Box>{value === 40 ? <AngelNetwork /> : null}</Box>
+              <Box>{value === 50 ? <InvBank /> : null}</Box>
+              <Box>{value === 60 ? <Accelerator /> : null}</Box>
               <Box sx={{ mt: 6, textAlign: 'end' }}>
-                <p>© 2023 arthasaga pvt ltd. All Rights Reserved.</p>
+                <p>{String.COPY_RIGHT}</p>
               </Box>
             </Container>
           </Grid>

@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
 import Routers from './routers/Routers';
-
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import GlobalStyle from './styles/Global.style';
-
+import { ThemeProvider } from '@mui/material';
+import { Theme } from './styles/Theme';
 import './App.css';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-
-      <Routers />
+      <ThemeProvider theme={Theme}>
+        <Routers />
+      </ThemeProvider>
     </>
   );
 }

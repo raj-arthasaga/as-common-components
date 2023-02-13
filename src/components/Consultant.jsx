@@ -19,40 +19,17 @@ import 'yup-phone';
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
-  StartUp: yup
-    .string('Enter your StartUp Name')
-    .required('StartUp Name is required(free form upto 50 char)')
-    .max(50, 'free form upto 50 char'),
-  legal: yup
-    .string('Legal Name is required')
-    .required('legal Name is required(free form upto 100 char)')
-    .max(100, 'free form upto 100 char'),
-  founderName: yup.string('Enter your Founder Name').required('Founder Name is required'),
+  StartUp: yup.string(String.ENTER_YOUR_START_UP).required(String.START_UP_MAX).max(50, String.START_UP_MAX),
+  legal: yup.string(String.LEGAL_NAME).required(String.LEGAL_NAME_MAX).max(100, 'free form upto 100 char'),
+  founderName: yup.string(String.FOUNDER_NAME).required(String.NAME_REQ),
   email: yup
-    .string('Enter your email')
-    .email(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .) '
-    )
-    .required(
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    )
-    .max(
-      50,
-      'max 50 char and should include atleast one @ and . (@ and . cannot be last char - will need some text after @ and . , cannot have more than 1 @ and .)'
-    ),
+    .string(String.EMAIL_UP)
+    .email(String.VALID_EMAIL)
+    .required(String.VALID_EMAIL_REQ)
+    .max(50, String.VALID_EMAIL),
   phoneNumber: yup.string().phone('IN', true).required('Enter Valid Number').max(10, ''),
-  aadhar: yup
-    .string('Enter your aadhar number')
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      'aadhar number is not valid'
-    ),
-  Cin: yup
-    .string('Enter CIN number')
-    .matches(
-      /^([LUu]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$/,
-      'CIN Number is not valid'
-    ),
+  aadhar: yup.string(String.AADHAR_NUM).matches(String.AADHAR_NUM_VALID, String.AADHAR_NUM_VALID_IS),
+  Cin: yup.string(String.CIN_NUM).matches(String.CIN_NUM_VALID, String.CIN_NUM),
 });
 
 const Consultant = () => {

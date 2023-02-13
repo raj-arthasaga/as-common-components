@@ -1,6 +1,8 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
+import SignIn from '../pages/SignIn';
 import LazyLoad from './LazyLoad';
 const Loader = LazyLoad(import('../components/Loader.jsx'));
 const Home = LazyLoad(import('../pages/Home.jsx'));
@@ -15,6 +17,8 @@ const Routers = () => {
             <Route index element={<Home />} />
             <Route path='login' element={<Login />} />
             <Route path='sign-up' element={<SignUp />} />
+            <Route path='sign-in' element={<SignIn />} />
+            <Route path='dashboard' element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

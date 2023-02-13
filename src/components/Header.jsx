@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Box, Toolbar, Container, AppBar, Button, Typography } from '@mui/material';
-import Logo from '../assets/logo.png';
+import { Box, Toolbar, Container, AppBar, Button, Menu, MenuItem } from '@mui/material';
+import Logo from '../assets/logo-header.png';
 import { Link } from 'react-router-dom';
+import Menus from './Menus';
 
 function Header() {
   return (
@@ -11,7 +12,7 @@ function Header() {
           <Box
             sx={{
               '& img': {
-                width: 55,
+                width: '130px',
               },
               display: 'flex',
               alignItems: 'center',
@@ -20,17 +21,6 @@ function Header() {
           >
             <Box>
               <img src={Logo} />
-            </Box>
-            <Box
-              sx={{
-                color: '#000',
-                ml: 1,
-                '& p': {
-                  fontSize: 20,
-                },
-              }}
-            >
-              <Typography>arthasaga</Typography>
             </Box>
           </Box>
           <Box
@@ -54,23 +44,7 @@ function Header() {
               },
             }}
           >
-            <ul>
-              <li>
-                <Link href='#'>Invest</Link>
-              </li>
-              <li>
-                <Link href='#'>Raise Capital</Link>
-              </li>
-              <li>
-                <Link href='#'>Underwriter</Link>
-              </li>
-              <li>
-                <Link href='#'>Company</Link>
-              </li>
-              <li>
-                <Link href='#'>Resources</Link>
-              </li>
-            </ul>
+            <Menus />
           </Box>
           <Box
             sx={{
@@ -85,24 +59,38 @@ function Header() {
               },
             }}
           >
-            <Box>
-              <Link to='/'>Sign In</Link>
-            </Box>
             <Box
               sx={{
                 '& button': {
-                  backgroundColor: '#52a9ff',
+                  backgroundColor: '#5FBD6F',
                   color: '#fff',
                   padding: '.5rem 1rem',
 
                   '&:hover': {
-                    backgroundColor: '#52a9ff',
+                    backgroundColor: '#5FBD6F',
                   },
                 },
               }}
             >
               <Link to='/sign-up'>
                 <Button variant='text'>Sign Up</Button>
+              </Link>
+            </Box>
+            <Box
+              sx={{
+                '& button': {
+                  backgroundColor: '#3D4659',
+                  color: '#fff',
+                  padding: '.5rem 1rem',
+
+                  '&:hover': {
+                    backgroundColor: '#3D4659',
+                  },
+                },
+              }}
+            >
+              <Link to='/'>
+                <Button variant='text'>Try Arthsaga Free</Button>
               </Link>
             </Box>
           </Box>

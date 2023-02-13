@@ -10,14 +10,8 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import 'yup-phone';
 import { useState } from 'react';
-import { ReactComponent as DownChervon } from '../assets/sign-up/down-chervon.svg';
-import { useFormik } from 'formik';
-import 'yup-phone';
-import * as yup from 'yup';
-import 'yup-phone';
-
-import Input from './Input';
 import Individual from './Individual';
 import Institutional from './Institutional';
 
