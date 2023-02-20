@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AccountSetting from '../pages/account-settings';
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import SignIn from '../pages/SignIn';
@@ -19,6 +20,7 @@ const Routers = () => {
             <Route path='sign-up' element={<SignUp />} />
             <Route path='sign-in' element={<SignIn />} />
             <Route path='dashboard' element={<Dashboard />} />
+            <Route path='account-settings' element={<AccountSetting />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

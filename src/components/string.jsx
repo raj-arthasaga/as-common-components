@@ -8,7 +8,7 @@ export const String = {
   SIGN_UP_TXT: "We're excited to have you on board, Let's get started by creating your account",
   WELCOME: 'Welcome to Arthasaga',
   I_AM: 'I am a/an',
-  COPY_RIGHT: '© 2023 arthasaga pvt ltd. All Rights Reserved.',
+  COPY_RIGHT: '© 2023 Arthasaga pvt ltd. All Rights Reserved.',
   ENTER_YOUR_START_UP: 'Enter your StartUp Name',
   START_UP_MAX: 'Startup name is required (max 50 characters allowed)',
   MAX_50: 'max 50 characters allowed',
@@ -32,4 +32,7 @@ export const String = {
   PASSWORD_REQ: 'Password is required',
   NAME: 'Enter Your Name',
   ENTER_RESIDENCE: 'Enter Your Residence',
+  INVESTOR_FOOTER: 'Investments',
+  RESOURCE: 'Resources',
+  COMPANY: 'Company',
 };

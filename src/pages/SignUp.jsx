@@ -89,7 +89,6 @@ const SignUp = () => {
 
                   '& .MuiInputBase-root': {
                     border: '1px solid #3D4659 !important',
-                    borderRadius: '5px',
                   },
                   '& .MuiSelect-select': {
                     fontFamily: "'Poppins',sans-serif !important",

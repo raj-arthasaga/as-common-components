@@ -9,7 +9,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Composition = () => {
   return (
     <>
-      <Box sx={{ p: '0', pb: '20px' }}>
+      <Box>
         <Box sx={{ padding: '16px' }}>
           <Typography variant='h5' sx={{ fontFamily: "'Poppins',sans-serif !important", mb: 5 }}>
             Portfolio Composition

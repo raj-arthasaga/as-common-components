@@ -126,8 +126,7 @@ const SignUp = () => {
                   justifyContent: 'center',
 
                   '& .MuiInputBase-root': {
-                    border: '1px solid #3D4659 !important',
-                    borderRadius: '10px',
+                    border: '1px solid #afb4bf !important',
                   },
                   '& .MuiSelect-select': {
                     fontFamily: "'Poppins',sans-serif !important",
