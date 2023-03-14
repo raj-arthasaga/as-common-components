@@ -60,6 +60,20 @@ const COI = () => {
   return (
     <>
       <Box mt={2}>
+        <Box>
+          <Typography
+            sx={{
+              mt: '10px',
+              mb: '20px',
+              textTransform: 'capitalize',
+              fontFamily: "'Poppins',sans-serif !important",
+              fontWeight: 'bold',
+            }}
+            variant='h5'
+          >
+            Institutional Inv
+          </Typography>
+        </Box>
         <StyledDropzone />
       </Box>
     </>

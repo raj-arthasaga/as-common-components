@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, CircularProgress, Typography, List, ListItemButton, Avatar, Tabs, Tab } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import LockIcon from '@mui/icons-material/Lock';
 import ButtonMain from '../Button';
+import COI from './COI';
 
 function CircularProgressWithLabel(props) {
   return (
@@ -33,19 +33,20 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
+    <Box
       role='tabpanel'
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      sx={{ width: '72%', position: 'absolute', top: 0, right: 0 }}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -89,6 +90,10 @@ const LeftSide = () => {
             },
             '& .MuiTypography-caption': {
               fontSize: '20px',
+            },
+
+            '& div[role="tabpanel"] ': {
+              width: '72%',
             },
 
             '& .MuiBox-root': {
@@ -263,7 +268,7 @@ const LeftSide = () => {
           />
         </Tabs>
         <TabPanel value={value} index={0}>
-          Item One
+          <COI />
         </TabPanel>
         <TabPanel value={value} index={1}>
           Item Two
